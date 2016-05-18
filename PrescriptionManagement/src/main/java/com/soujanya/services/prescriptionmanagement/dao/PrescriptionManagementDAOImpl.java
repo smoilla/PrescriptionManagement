@@ -27,6 +27,8 @@ public class PrescriptionManagementDAOImpl implements PrescriptionManagementDAO 
 				System.out.print(metaData.getColumnName(i) + "  ");
 			}
 
+			
+			// test
 			System.out.println();
 			while (rs.next())
 				System.out.println(rs.getString("RX_NUMBER") + "  " + rs.getString("LOCA_NUMBER"));
