@@ -1,6 +1,8 @@
 package com.soujanya.services.prescriptionmanagement;
 
-public class FindPrescriptionsRequest {
+import java.io.Serializable;
+
+public class FindPrescriptionsRequest implements Serializable{
 
 	private String customerId;
 

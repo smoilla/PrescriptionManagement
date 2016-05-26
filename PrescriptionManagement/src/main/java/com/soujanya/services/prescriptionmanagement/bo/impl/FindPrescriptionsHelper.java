@@ -22,8 +22,8 @@ public class FindPrescriptionsHelper {
 
 	public FindPrescriptionsResponse postProcess(FindPrescriptionsResponse response) {
 
-		for (Prescription prescription : response.getPrescription()) {
-			if (prescription.getIsEligible().equalsIgnoreCase("true")) {
+		for (Prescription prescription : response.getPrescriptions()) {
+			if (prescription.getIsEligible() != null && prescription.getIsEligible().equalsIgnoreCase("true")) {
 				prescription.setNonEligibleReasonCode(null);
 			}
 		}

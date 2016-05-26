@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bo.prescriptionmanagement.services.soujanya.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://bo.prescriptionmanagement.services.soujanya.com" xmlns:intf="http://bo.prescriptionmanagement.services.soujanya.com" xmlns:tns1="http://prescriptionmanagement.services.soujanya.com" xmlns:tns2="http://model.services.soujanya.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://bo.prescriptionmanagement.services.soujanya.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.services.soujanya.com"/>
+   <import namespace="http://prescriptionmanagement.services.soujanya.com"/>
+   <element name="findPrescrptions">
+    <complexType>
+     <sequence>
+      <element name="request" type="tns1:FindPrescriptionsRequest"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findPrescrptionsResponse">
+    <complexType>
+     <sequence>
+      <element name="findPrescrptionsReturn" type="tns1:FindPrescriptionsResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns2_Prescription">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:Prescription"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://prescriptionmanagement.services.soujanya.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.services.soujanya.com"/>
+   <import namespace="http://bo.prescriptionmanagement.services.soujanya.com"/>
+   <complexType name="FindPrescriptionsRequest">
+    <sequence>
+     <element name="customerId" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindPrescriptionsResponse">
+    <sequence>
+     <element name="prescriptions" nillable="true" type="impl:ArrayOf_tns2_Prescription"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.services.soujanya.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://prescriptionmanagement.services.soujanya.com"/>
+   <import namespace="http://bo.prescriptionmanagement.services.soujanya.com"/>
+   <complexType name="Drug">
+    <sequence>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="ndc" nillable="true" type="xsd:string"/>
+     <element name="specialty" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Address">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="line1" nillable="true" type="xsd:string"/>
+     <element name="line2" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="zipCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Prescriber">
+    <sequence>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="homeAddress" nillable="true" type="tns2:Address"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="licenseNumber" nillable="true" type="xsd:string"/>
+     <element name="workAddress" nillable="true" type="tns2:Address"/>
+    </sequence>
+   </complexType>
+   <complexType name="Prescription">
+    <sequence>
+     <element name="dateOfService" nillable="true" type="xsd:string"/>
+     <element name="daysSupplyQuantity" nillable="true" type="xsd:string"/>
+     <element name="dosageQuantity" nillable="true" type="xsd:string"/>
+     <element name="drug" nillable="true" type="tns2:Drug"/>
+     <element name="enrollmentIndicator" nillable="true" type="xsd:string"/>
+     <element name="fillingPharmacy" nillable="true" type="xsd:string"/>
+     <element name="isEligible" nillable="true" type="xsd:string"/>
+     <element name="lastFilllDate" nillable="true" type="xsd:string"/>
+     <element name="locaNumber" nillable="true" type="xsd:string"/>
+     <element name="nonEligibleReasonCode" nillable="true" type="xsd:string"/>
+     <element name="prescriber" nillable="true" type="tns2:Prescriber"/>
+     <element name="rxNumber" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="findPrescrptionsRequest">
+
+      <wsdl:part element="impl:findPrescrptions" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findPrescrptionsResponse">
+
+      <wsdl:part element="impl:findPrescrptionsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PrescriptionManagementService">
+
+      <wsdl:operation name="findPrescrptions">
+
+         <wsdl:input message="impl:findPrescrptionsRequest" name="findPrescrptionsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findPrescrptionsResponse" name="findPrescrptionsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PrescriptionManagementServiceSoapBinding" type="impl:PrescriptionManagementService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="findPrescrptions">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findPrescrptionsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findPrescrptionsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PrescriptionManagementServiceService">
+
+      <wsdl:port binding="impl:PrescriptionManagementServiceSoapBinding" name="PrescriptionManagementService">
+
+         <wsdlsoap:address location="http://localhost:8081/WebServiceProject/services/PrescriptionManagementService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

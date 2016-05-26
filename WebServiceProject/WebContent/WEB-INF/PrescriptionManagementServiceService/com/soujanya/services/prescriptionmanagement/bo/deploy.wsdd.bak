@@ -1,0 +1,84 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PrescriptionManagementServiceService WSDL service -->
+
+  <service name="PrescriptionManagementService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://bo.prescriptionmanagement.services.soujanya.com"/>
+      <parameter name="wsdlServiceElement" value="PrescriptionManagementServiceService"/>
+      <parameter name="schemaQualified" value="http://bo.prescriptionmanagement.services.soujanya.com,http://prescriptionmanagement.services.soujanya.com,http://model.services.soujanya.com"/>
+      <parameter name="wsdlServicePort" value="PrescriptionManagementService"/>
+      <parameter name="className" value="com.soujanya.services.prescriptionmanagement.bo.PrescriptionManagementServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="PrescriptionManagementService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="findPrescrptions" qname="operNS:findPrescrptions" xmlns:operNS="http://bo.prescriptionmanagement.services.soujanya.com" returnQName="retNS:findPrescrptionsReturn" xmlns:retNS="http://bo.prescriptionmanagement.services.soujanya.com" returnType="rtns:FindPrescriptionsResponse" xmlns:rtns="http://prescriptionmanagement.services.soujanya.com" soapAction="" >
+        <parameter qname="pns:request" xmlns:pns="http://bo.prescriptionmanagement.services.soujanya.com" type="tns:FindPrescriptionsRequest" xmlns:tns="http://prescriptionmanagement.services.soujanya.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="findPrescrptions"/>
+
+      <typeMapping
+        xmlns:ns="http://model.services.soujanya.com"
+        qname="ns:Prescription"
+        type="java:com.soujanya.services.model.Prescription"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.services.soujanya.com"
+        qname="ns:Drug"
+        type="java:com.soujanya.services.model.Drug"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://prescriptionmanagement.services.soujanya.com"
+        qname="ns:FindPrescriptionsRequest"
+        type="java:com.soujanya.services.prescriptionmanagement.FindPrescriptionsRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.services.soujanya.com"
+        qname="ns:Prescriber"
+        type="java:com.soujanya.services.model.Prescriber"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://prescriptionmanagement.services.soujanya.com"
+        qname="ns:FindPrescriptionsResponse"
+        type="java:com.soujanya.services.prescriptionmanagement.FindPrescriptionsResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://bo.prescriptionmanagement.services.soujanya.com"
+        qname="ns:ArrayOf_tns2_Prescription"
+        type="java:com.soujanya.services.model.Prescription[]"
+        innerType="cmp-ns:Prescription" xmlns:cmp-ns="http://model.services.soujanya.com"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model.services.soujanya.com"
+        qname="ns:Address"
+        type="java:com.soujanya.services.model.Address"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

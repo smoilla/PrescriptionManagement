@@ -1,19 +1,21 @@
 package com.soujanya.services.prescriptionmanagement;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.soujanya.services.model.Prescription;
 
-public class FindPrescriptionsResponse {
+public class FindPrescriptionsResponse implements Serializable{
 
-	private List<Prescription> prescription;
+	private Prescription[] prescriptions;
 
-	public List<Prescription> getPrescription() {
-		return prescription;
+	public Prescription[] getPrescriptions() {
+		return prescriptions;
 	}
 
-	public void setPrescription(List<Prescription> prescription) {
-		this.prescription = prescription;
+	public void setPrescriptions(Prescription[] prescriptions) {
+		this.prescriptions = prescriptions;
 	}
 
 }
