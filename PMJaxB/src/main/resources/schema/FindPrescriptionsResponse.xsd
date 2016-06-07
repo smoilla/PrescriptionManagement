@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/FindPrescriptionsResponse"
+	xmlns:tns="http://www.example.org/FindPrescriptionsResponse"
+	elementFormDefault="qualified">
+	<xsd:element name="FindPrescriptionsResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="prescriptions" type="tns:ArrayOfPrescriptions" />
+				<xsd:element name="numberOfPrescriptions" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="ArrayOfPrescriptions">
+		<xsd:sequence>
+			<xsd:element name="prescription" type="tns:Prescription"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+
+	<xsd:complexType name="Prescription">
+		<xsd:sequence>
+			<xsd:element name="rxNumber" type="xsd:string" />
+			<xsd:element name="locaNumber" type="xsd:string" />
+			<xsd:element name="dateOfService" type="xsd:string" />
+			<xsd:element name="daysSupplyQuantity" type="xsd:string" />
+			<xsd:element name="lastFilllDate" type="xsd:string" />
+			<xsd:element name="dosageQuantity" type="xsd:string" />
+			<xsd:element name="fillingPharmacy" type="xsd:string" />
+			<xsd:element name="enrollmentIndicator" type="xsd:string" />
+			<xsd:element name="isEligible" type="xsd:string" />
+			<xsd:element name="nonEligibleReasonCode" type="xsd:string" />
+			<xsd:element name="prescriber" type="tns:Prescriber" />
+			<xsd:element name="drug" type="tns:Drug" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Address">
+		<xsd:sequence>
+			<xsd:element name="line1" type="xsd:string" />
+			<xsd:element name="line2" type="xsd:string" />
+			<xsd:element name="state" type="xsd:string" />
+			<xsd:element name="city" type="xsd:string" />
+			<xsd:element name="zipcode" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="Prescriber">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="firstName" type="xsd:string" />
+			<xsd:element name="lastName" type="xsd:string" />
+			<xsd:element name="homeAddress" type="tns:Address" />
+			<xsd:element name="workAddress" type="tns:Address" />
+			<xsd:element name="licenseNumber" type="xsd:string" />
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Drug">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" />
+			<xsd:element name="type" type="xsd:string" />
+			<xsd:element name="speciality" type="xsd:string" />
+			<xsd:element name="ndc" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+</xsd:schema>

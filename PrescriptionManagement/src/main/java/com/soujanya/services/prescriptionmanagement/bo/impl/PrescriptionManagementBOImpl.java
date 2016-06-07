@@ -23,7 +23,7 @@ public class PrescriptionManagementBOImpl implements PrescriptionManagementBO {
 
 		response.setPrescriptions(dao.findPrescrptions(request.getCustomerId()));
 
-//		response = findPrescriptionsHelper.postProcess(response);
+		response = findPrescriptionsHelper.postProcess(response);
 		return response;
 	}
 

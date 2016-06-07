@@ -23,10 +23,12 @@ public class FindPrescriptionsHelper {
 	public FindPrescriptionsResponse postProcess(FindPrescriptionsResponse response) {
 
 		for (Prescription prescription : response.getPrescriptions()) {
-			if (prescription.getIsEligible() != null && prescription.getIsEligible().equalsIgnoreCase("true")) {
+			if (prescription != null && prescription.getIsEligible() != null && prescription.getIsEligible().equalsIgnoreCase("true")) {
 				prescription.setNonEligibleReasonCode(null);
 			}
 		}
+		
+		response.setNumberOfPrescriptions(response.getPrescriptions().length);
 		return response;
 	}
 
